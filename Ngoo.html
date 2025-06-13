@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>กลับมาได้ไหม / ได้</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .red {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    .green {
+      background-color: #2ecc71;
+      color: white;
+    }
+
+    #counter {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- หน้าปุ่มแรก -->
+  <div id="page1">
+    <button class="button red" onclick="goToNextPage()">เลิกทำแล้ว</button>
+  </div>
+
+  <!-- หน้าปุ่มที่สอง -->
+  <div id="page2" style="display: none;">
+    <button class="button green" onclick="increaseCount()">เข้าใจ</button>
+    <div id="counter">จำนวนคนที่เข้าใจ: 0</div>
+  </div>
+
+  <script>
+    function goToNextPage() {
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page2').style.display = 'block';
+      updateCounter();
+    }
+
+    function increaseCount() {
+      let count = parseInt(localStorage.getItem('understood') || '0');
+      count++;
+      localStorage.setItem('understood', count);
+      updateCounter();
+    }
+
+    function updateCounter() {
+      let count = parseInt(localStorage.getItem('understood') || '0');
+      document.getElementById('counter').innerText = "จำนวนคนที่เข้าใจ: " + count;
+    }
+  </script>
+
+</body>
+</html>
